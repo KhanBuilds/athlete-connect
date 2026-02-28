@@ -1,4 +1,22 @@
-const { execSync } = require("child_process");
-const port = process.env.PORT || 3000;
-console.log(`Starting Next.js on 0.0.0.0:${port}`);
-execSync(`npx next start -H 0.0.0.0 -p ${port}`, { stdio: "inherit" });
+const { createServer } = require("http");
+const { parse } = require("url");
+const next = require("next");
+
+const port = parseInt(process.env.PORT, 10) || 3000;
+const app = next({ dev: false, hostname: "0.0.0.0", port });
+const handle = app.getRequestHandler();
+
+app.prepare().then(() => {
+    createServer(async (req, res) => {
+        try {
+            const parsedUrl = parse(req.url, true);
+            await handle(req, res, parsedUrl);
+        } catch (err) {
+            console.error("Error:", err);
+            res.statusCode = 500;
+            res.end("Internal Server Error");
+        }
+    }).listen(port, "0.0.0.0", () => {
+        console.log(`> AthleteConnect ready on http://0.0.0.0:${port}`);
+    });
+});
