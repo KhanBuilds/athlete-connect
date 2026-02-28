@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "prisma generate && prisma db push && next build",
     "postbuild": "node prisma/seed.js",
-    "start": "node start.js",
+    "start": "next start",
     "lint": "eslint",
     "seed": "node prisma/seed.js"
   },
