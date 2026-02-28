@@ -1,0 +1,213 @@
+.hero {
+    padding-top: var(--space-3xl);
+}
+
+.heroInner {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--space-3xl);
+    align-items: center;
+    padding-bottom: var(--space-3xl);
+}
+
+.heroContent {
+    animation: fadeIn 0.4s ease;
+}
+
+.heroTitle {
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+}
+
+.heroDesc {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 480px;
+    margin-bottom: var(--space-xl);
+}
+
+.heroCta {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+/* Preview Card - Professional, LinkedIn-like */
+.heroRight {
+    display: flex;
+    justify-content: center;
+}
+
+.previewCard {
+    width: 100%;
+    max-width: 340px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    animation: fadeIn 0.5s ease 0.15s both;
+}
+
+.previewHeader {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border-muted);
+}
+
+.previewAvatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: var(--font-size-xl);
+    color: white;
+    flex-shrink: 0;
+}
+
+.previewImg {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.previewName {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    margin-bottom: 1px;
+}
+
+.previewRole {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.previewMeta {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    margin-top: 2px;
+}
+
+.previewStats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--border-muted);
+}
+
+.pStat {}
+
+.pStatVal {
+    display: block;
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--accent-primary);
+}
+
+.pStatLbl {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.previewBtnRow {
+    display: flex;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
+}
+
+.previewBtn {
+    flex: 1;
+    padding: 7px 0;
+    text-align: center;
+    background: var(--accent-primary);
+    color: white;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+.previewBtnOutline {
+    flex: 1;
+    padding: 7px 0;
+    text-align: center;
+    border: 1px solid var(--border-default);
+    color: var(--text-secondary);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+/* Stats strip */
+.statsStrip {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-default);
+    border-bottom: 1px solid var(--border-default);
+    padding: var(--space-lg) 0;
+}
+
+.statsInner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+}
+
+.statItem {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    justify-content: center;
+}
+
+.statIcon {
+    color: var(--text-muted);
+}
+
+.statValue {
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+    color: var(--text-primary);
+}
+
+.statLabel {
+    font-size: var(--font-size-sm);
+    color: var(--text-tertiary);
+}
+
+@media (max-width: 768px) {
+    .heroInner {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+        text-align: center;
+    }
+
+    .heroDesc {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .heroCta {
+        justify-content: center;
+    }
+
+    .heroTitle {
+        font-size: var(--font-size-3xl);
+    }
+
+    .statsInner {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

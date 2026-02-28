@@ -1,0 +1,108 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String
+  password  String
+  role      String   @default("athlete") // athlete, club, sponsor
+  sport     String?
+  athleteId Int?     @unique
+  athlete   Athlete? @relation(fields: [athleteId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Athlete {
+  id           Int       @id @default(autoincrement())
+  externalId   String?   @unique // TheSportsDB idPlayer
+  name         String
+  sport        String
+  position     String
+  team         String?
+  nationality  String?
+  city         String?
+  country      String?
+  age          Int?
+  bio          String?
+  height       String?
+  weight       String?
+  gender       String?
+  birthDate    String?
+  birthPlace   String?
+  status       String?   @default("Active")
+  verified     Boolean   @default(false)
+
+  // Images from TheSportsDB
+  thumbUrl     String?
+  cutoutUrl    String?
+  bannerUrl    String?
+  fanartUrl    String?
+
+  // Social links
+  facebook     String?
+  twitter      String?
+  instagram    String?
+  website      String?
+
+  // Relations
+  user         User?
+  stats        Stat[]
+  career       CareerEvent[]
+  achievements Achievement[]
+  highlights   Highlight[]
+
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Stat {
+  id        Int     @id @default(autoincrement())
+  athleteId Int
+  athlete   Athlete @relation(fields: [athleteId], references: [id], onDelete: Cascade)
+  label     String
+  value     String
+  unit      String?
+  trend     String? // "up" | "down" | "neutral"
+}
+
+model CareerEvent {
+  id           Int     @id @default(autoincrement())
+  athleteId    Int
+  athlete      Athlete @relation(fields: [athleteId], references: [id], onDelete: Cascade)
+  year         String
+  title        String
+  organization String?
+  description  String?
+  type         String  @default("club") // club, national, award, milestone
+  badgeUrl     String?
+  moveType     String? // Permanent, Loan, Youth
+}
+
+model Achievement {
+  id        Int     @id @default(autoincrement())
+  athleteId Int
+  athlete   Athlete @relation(fields: [athleteId], references: [id], onDelete: Cascade)
+  title     String
+  season    String?
+  teamBadge String?
+  logoUrl   String?
+  trophyUrl String?
+}
+
+model Highlight {
+  id        Int     @id @default(autoincrement())
+  athleteId Int
+  athlete   Athlete @relation(fields: [athleteId], references: [id], onDelete: Cascade)
+  title     String
+  url       String?
+  duration  String?
+  views     Int     @default(0)
+  date      String?
+}
