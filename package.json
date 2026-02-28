@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && prisma db push && next build && npm run copy-standalone",
-    "copy-standalone": "cp -r .next/static .next/standalone/.next/static && cp -r public .next/standalone/public && cp -r prisma .next/standalone/prisma && cp -r node_modules/.prisma .next/standalone/node_modules/.prisma && cp -r node_modules/@prisma .next/standalone/node_modules/@prisma || echo done",
+    "build": "prisma generate && prisma db push && next build",
     "postbuild": "node prisma/seed.js",
-    "start": "node .next/standalone/server.js",
+    "start": "next start -p ${PORT:-3000}",
     "lint": "eslint",
     "seed": "node prisma/seed.js"
   },
